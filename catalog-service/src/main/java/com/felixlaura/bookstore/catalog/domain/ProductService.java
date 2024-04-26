@@ -1,14 +1,13 @@
 package com.felixlaura.bookstore.catalog.domain;
 
 import com.felixlaura.bookstore.catalog.ApplicationProperties;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -22,7 +21,7 @@ public class ProductService {
         this.applicationProperties = applicationProperties;
     }
 
-    public PagedResult<Product> getProducts(int pageNo){
+    public PagedResult<Product> getProducts(int pageNo) {
         Sort sort = Sort.by("name").ascending();
         pageNo = pageNo <= 1 ? 0 : pageNo - 1;
         Pageable pageable = PageRequest.of(pageNo, applicationProperties.pageSize(), sort);
@@ -39,7 +38,7 @@ public class ProductService {
                 productsPage.hasPrevious());
     }
 
-    public Optional<Product> getProductByCode(String code){
+    public Optional<Product> getProductByCode(String code) {
         return productRepository.findByCode(code).map(ProductMapper::toProduct);
     }
 }

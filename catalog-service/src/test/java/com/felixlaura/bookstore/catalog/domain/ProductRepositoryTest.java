@@ -1,9 +1,7 @@
 package com.felixlaura.bookstore.catalog.domain;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +10,8 @@ import org.springframework.test.context.jdbc.Sql;
 
 @DataJpaTest(
         properties = {
-                "spring.test.database.replace=none",
-                "spring.datasource.url=jdbc:tc:postgresql:16-alpine:///db",
+            "spring.test.database.replace=none",
+            "spring.datasource.url=jdbc:tc:postgresql:16-alpine:///db",
         })
 // @Import(ContainersConfig.class)
 @Sql("/test-data.sql")
@@ -32,5 +30,4 @@ public class ProductRepositoryTest {
     void shouldReturnEmptyWhenProductCodeNotExists() {
         assertThat(productRepository.findByCode("invalid_product_code")).isEmpty();
     }
-
 }

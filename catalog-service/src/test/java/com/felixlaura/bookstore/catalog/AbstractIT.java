@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Import;
 @Import(ContainersConfig.class)
 public abstract class AbstractIT {
 
-    //to bind the local port
+    // to bind the local port
     @LocalServerPort
     int port;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         RestAssured.port = port;
     }
 }
